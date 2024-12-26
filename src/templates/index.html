@@ -7,24 +7,22 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to KBC Game</h1>
-        <div id="question-container">
-            <h2 id="question"></h2>
-            <div id="options">
-                <button class="option" onclick="selectOption(1)"></button>
-                <button class="option" onclick="selectOption(2)"></button>
-                <button class="option" onclick="selectOption(3)"></button>
-                <button class="option" onclick="selectOption(4)"></button>
-            </div>
-        </div>
-        <div id="score">
-            <h3>Your Money: <span id="money">0</span></h3>
+    <h1>Welcome to KBC Game</h1>
+    <div id="question-container">
+        <h2 id="question"></h2>
+        <div id="options">
+            <button class="option" onclick="selectOption(1)"></button>
+            <button class="option" onclick="selectOption(2)"></button>
+            <button class="option" onclick="selectOption(3)"></button>
+            <button class="option" onclick="selectOption(4)"></button>
         </div>
     </div>
+    <div id="score">
+        <h3>Your Money: <span id="money">0</span></h3>
+    </div>
     <script>
-        const q = {questions , tojson , safe};
-        const l = { levels , tojson , safe };
+        const questions = {{ questions | tojson | safe }};
+        const levels = {{ levels | tojson | safe }};
     </script>
     <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 </body>

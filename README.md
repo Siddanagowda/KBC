@@ -1,60 +1,73 @@
 # KBC Web Application
 
-This project is a web-based implementation of the popular quiz game "Kaun Banega Crorepati" (KBC). It allows users to play the game through a web interface, answering questions and managing their progress.
+This is a web application for the "Kaun Banega Crorepati" (KBC) game built using Flask. The application allows users to answer multiple-choice questions and earn money based on their correct answers.
 
-## Project Structure
+## Features
 
+- Multiple-choice questions
+- Dynamic question loading
+- Score tracking
+- Game restart functionality
+
+## Requirements
+
+- Python 3.x
+- Flask
+
+## Setup
+
+### 1. Clone the Repository
+
+```sh
+git clone https://github.com/your-username/KBC.git
+cd KBC/src
 ```
-kbc-web-app
-├── src
-│   ├── kbc.py               # Core logic of the KBC game
-│   ├── app.py               # Entry point of the web application
-│   ├── templates
-│   │   └── index.html       # Main HTML template for the web application
-│   ├── static
-│       ├── css
-│       │   └── styles.css    # CSS styles for the web application
-│       └── js
-│           └── scripts.js    # JavaScript for client-side interactivity
-├── requirements.txt         # Project dependencies
-└── README.md                # Project documentation
+Create a Virtual Environment AND ACTIVATE
+```sh
+python -m venv venv 
+
+venv\Scripts\activate    //windows
+source venv/bin/activate   //linux
+```
+### 2. Install Dependencies And Run The Application
+```sh
+pip install -r requirements.txt
+python app.py
+```
+### 3.Project Structure
+```
+KBC
+└── src
+    ├── kbc.py
+    ├── app.py
+    ├── templates
+    │   └── index.html
+    └── static
+        ├── css
+        │   └── styles.css
+        └── js
+            └── scripts.js
+    
+```
+### 4.kbc.py
+This file contains the HTML structure of the web page.
+### 5.app.py
+This file sets up the Flask application, handles the routes for the main page, processes answers, and provides a restart endpoint to reset the game state.
+### 7.index.html
+This file contains the HTML structure of the web page.
+### 8.styles.js
+This file contains the CSS styles for the web page.
+
+### 9.scripts.js
+This file contains the JavaScript logic for the web page.
+
+### 10.requirements
+Flask==2.0.1
+
+### License
+This project is licensed under the MIT License. See the LICENSE file for details.
 ```
 
-## Setup Instructions
-
-1. **Clone the repository:**
-   ```
-   git clone <repository-url>
-   cd kbc-web-app
-   ```
-
-2. **Install dependencies:**
-   It is recommended to use a virtual environment. You can create one using:
-   ```
-   python -m venv venv
-   source venv/bin/activate  # On Windows use `venv\Scripts\activate`
-   ```
-   Then install the required packages:
-   ```
-   pip install -r requirements.txt
-   ```
-
-3. **Run the application:**
-   Start the Flask application by running:
-   ```
-   python src/app.py
-   ```
-   The application will be accessible at `http://127.0.0.1:5000`.
-
-## Usage
-
-- Open your web browser and navigate to `http://127.0.0.1:5000` to start playing the KBC game.
-- Follow the on-screen instructions to answer questions and progress through the game.
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a pull request or open an issue for any suggestions or improvements.
-
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for more details.
+This `README.md` file provides comprehensive instructions for setting up and running your KBC web application, along with an overview of the project structure and code. If you have any further questions or need additional information, please let me know!
+This `README.md` file provides comprehensive instructions for setting up and running your KBC web application, along with an overview of the project structure and code. If you have any further questions or need additional information, please let me know!
+```

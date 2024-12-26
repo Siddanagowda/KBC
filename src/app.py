@@ -18,10 +18,16 @@ def answer():
     
     if is_correct:
         global money
-        # Update money or other game state here
-        return jsonify({'result': 'correct'})
+        money = levels[question_index]
+        return jsonify({'result': 'correct', 'money': money})
     else:
-        return jsonify({'result': 'incorrect'})
+        return jsonify({'result': 'incorrect', 'money': money})
+
+@app.route('/api/restart', methods=['POST'])
+def restart():
+    global money
+    money = 0
+    return jsonify({'result': 'restarted', 'money': money})
 
 if __name__ == '__main__':
     app.run(debug=True)
