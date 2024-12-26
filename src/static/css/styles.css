@@ -1,0 +1,31 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    width: 50%;
+    margin: auto;
+    text-align: center;
+}
+
+#question-container {
+    margin-top: 20px;
+}
+
+.option {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.option:hover {
+    background-color: #0056b3;
+}
+
+#score {
+    margin-top: 20px;
+}
