@@ -3,12 +3,16 @@ document.addEventListener('DOMContentLoaded', function() {
     let money = 0;
 
     function loadQuestion() {
-        const question = questions[currentQuestionIndex];
-        document.getElementById('question').innerText = question[0];
-        const options = document.querySelectorAll('.option');
-        for (let i = 0; i < options.length; i++) {
-            options[i].innerText = question[i + 1];
-        }
+        fetch('/')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('question').innerText = data.question;
+                const options = document.querySelectorAll('.option');
+                for (let i = 0; i < options.length; i++) {
+                    options[i].innerText = `${i + 1}. ${data.options[i]}`;
+                }
+                correctOption = data.correct_option;
+            });
     }
 
     window.selectOption = function(optionIndex) {
@@ -20,7 +24,8 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             body: JSON.stringify({
                 question_index: currentQuestionIndex,
-                selected_answer: selectedAnswer
+                selected_answer: selectedAnswer,
+                correct_option: correctOption
             })
         })
         .then(response => response.json())
@@ -29,12 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 money = data.money;
                 document.getElementById('money').innerText = money;
                 currentQuestionIndex++;
-                if (currentQuestionIndex < questions.length) {
-                    loadQuestion();
-                } else {
-                    document.getElementById('question-container').innerHTML = `<h2>Congratulations! You have completed the game.</h2>`;
-                    document.getElementById('score').innerHTML += `<button onclick="restartGame()">Restart Game</button>`;
-                }
+                loadQuestion();
             } else {
                 document.getElementById('question-container').innerHTML = `<h2>Incorrect answer. Game over. You won ${money}.</h2>`;
                 document.getElementById('score').innerHTML += `<button onclick="restartGame()">Restart Game</button>`;
@@ -57,10 +57,10 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('question-container').innerHTML = `
                 <h2 id="question"></h2>
                 <div id="options">
-                    <button class="option" onclick="selectOption(1)"></button>
-                    <button class="option" onclick="selectOption(2)"></button>
-                    <button class="option" onclick="selectOption(3)"></button>
-                    <button class="option" onclick="selectOption(4)"></button>
+                    <button class="option" onclick="selectOption(1)">1.</button>
+                    <button class="option" onclick="selectOption(2)">2.</button>
+                    <button class="option" onclick="selectOption(3)">3.</button>
+                    <button class="option" onclick="selectOption(4)">4.</button>
                 </div>
             `;
             document.getElementById('score').innerHTML = `<h3>Your Money: <span id="money">0</span></h3>`;
