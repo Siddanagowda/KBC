@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>KBC Quiz Game - Error</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #000033;
+            color: white;
+        }
+        .error-container {
+            background-color: #000066;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255,255,255,0.1);
+            text-align: center;
+            margin-top: 50px;
+        }
+        .error-message {
+            color: #ff6666;
+            font-size: 18px;
+            margin: 20px 0;
+        }
+        .button {
+            display: inline-block;
+            background-color: #000099;
+            color: white;
+            border: 2px solid #4444ff;
+            border-radius: 5px;
+            padding: 10px 20px;
+            text-decoration: none;
+            margin: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .button:hover {
+            background-color: #0000cc;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <h1>Oops! Something went wrong</h1>
+        <div class="error-message">
+            <%= error %>
+        </div>
+        <% if (typeof sessionId !== 'undefined') { %>
+            <a href="/play/<%= sessionId %>" class="button">Try Again</a>
+        <% } %>
+        <a href="/" class="button">Back to Topic Selection</a>
+    </div>
+</body>
+</html>
