@@ -156,4 +156,3 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - Built with Node.js and Express.js
 
 ---
-Made with ❤️ by [Your Name]
