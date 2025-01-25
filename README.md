@@ -95,7 +95,7 @@ const gameStates = new Map();
 
 1. **Clone the Repository**
 ```bash
-git clone https://github.com/yourusername/KBC.git
+git clone https://github.com/Siddanagowda/KBC.git
 cd KBC
 ```
 
