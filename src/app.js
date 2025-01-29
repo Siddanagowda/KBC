@@ -38,7 +38,7 @@ const topics = [
     'Current Affairs'
 ];
 
-async function generateMcq(topic, questionNumber) {
+async function generateMcq(topic, topicSpecification, questionNumber) {
     try {
         const model = genAI.getGenerativeModel({ model: "gemini-pro" });
         
@@ -51,14 +51,15 @@ async function generateMcq(topic, questionNumber) {
         const prompt = `You are creating a question for 'Who Wants to Be a Millionaire' style quiz game.
 
 Topic: ${topic}
+Specific Focus: ${topicSpecification}
 Question Number: ${questionNumber}/15 (make it progressively harder)
 
 Rules:
-1. Generate ONE challenging multiple-choice question
+1. Generate ONE challenging multiple-choice question specifically about "${topicSpecification}" within the broader topic of "${topic}"
 2. Question should be unique and not about a topic already covered
-3. For Sports topic, cover different sports, not just one sport repeatedly
-4. Make options distinctly different from each other
-5. Ensure question difficulty matches the question number (1=easiest, 15=hardest)
+3. Make options distinctly different from each other
+4. Ensure question difficulty matches the question number (1=easiest, 15=hardest)
+5. Make the question engaging and interesting
 6. Format EXACTLY as shown below:
 
 Example format:
@@ -121,10 +122,12 @@ app.get('/', (req, res) => {
     res.render('topic-selection', { topics });
 });
 
-app.post('/start-game', (req, res) => {
-    const { topic } = req.body;
-    if (!topics.includes(topic)) {
-        return res.status(400).json({ error: 'Invalid topic' });
+app.post('/game', (req, res) => {
+    const { selectedTopic, topicSpecification } = req.body;
+    
+    // Input validation
+    if (!selectedTopic || !topicSpecification) {
+        return res.status(400).json({ error: 'Both topic and specification are required' });
     }
     
     const sessionId = Math.random().toString(36).substring(7);
@@ -132,7 +135,8 @@ app.post('/start-game', (req, res) => {
         currentQuestion: 1,
         score: 0,
         totalQuestions: 15,
-        topic,
+        topic: selectedTopic,
+        topicSpecification: topicSpecification,
         questions: [],
         answers: []
     });
@@ -156,7 +160,7 @@ app.get('/play/:sessionId', async (req, res) => {
         
         while (attempts < maxAttempts) {
             try {
-                mcqs = await generateMcq(gameState.topic, gameState.currentQuestion);
+                mcqs = await generateMcq(gameState.topic, gameState.topicSpecification, gameState.currentQuestion);
                 break; // If successful, exit the loop
             } catch (error) {
                 attempts++;
@@ -196,7 +200,8 @@ app.get('/play/:sessionId', async (req, res) => {
             currentQuestion: gameState.currentQuestion,
             prizeMoney: prizeMoney[gameState.currentQuestion - 1],
             totalQuestions: gameState.totalQuestions,
-            topic: gameState.topic
+            topic: gameState.topic,
+            topicSpecification: gameState.topicSpecification
         });
     } catch (error) {
         console.error('Error generating question:', error);
@@ -242,6 +247,7 @@ app.post('/check-answer', async (req, res) => {
             const results = {
                 finalScore: gameState.score,
                 topic: gameState.topic,
+                topicSpecification: gameState.topicSpecification,
                 questions: gameState.questions,
                 answers: gameState.answers
             };
@@ -254,7 +260,7 @@ app.post('/check-answer', async (req, res) => {
         }
 
         try {
-            const mcqs = await generateMcq(gameState.topic, gameState.currentQuestion);
+            const mcqs = await generateMcq(gameState.topic, gameState.topicSpecification, gameState.currentQuestion);
             const lines = mcqs.split('\n');
             
             const question = lines[0].trim();
@@ -295,6 +301,7 @@ app.post('/check-answer', async (req, res) => {
         const results = {
             finalScore: gameState.score,
             topic: gameState.topic,
+            topicSpecification: gameState.topicSpecification,
             questions: gameState.questions,
             answers: gameState.answers
         };

@@ -1,50 +1,44 @@
-# KBC Quiz Game 🎮
+# KBC Quiz Game 🎮 
 
-A web-based quiz game inspired by "Who Wants to Be a Millionaire" (Kaun Banega Crorepati), built using Node.js, Express, and the Gemini AI API.
+A web-based quiz game inspired by "Who Wants to Be a Millionaire" (Kaun Banega Crorepati), built using Node.js, Express, and the Gemini AI API. 🚀
 
-## Screenshots
-
-### Topic Selection
-![Topic Selection](screenshots/topic-selection.png)
-*Choose from various topics like General Knowledge, Science & Technology, History, and more.*
-
-### Game Play
-![Game Play](screenshots/game-results.png)
-*Answer questions and win up to ₹1 Crore! Each correct answer increases your prize money.*
-
-## Features
+## ✨ Features
 
 - 🎯 Multiple Topics
-  - General Knowledge
-  - Science & Technology
-  - History
-  - Geography
-  - Sports
-  - Entertainment
-  - Literature
-  - Current Affairs
+  - 📚 General Knowledge
+  - 🔬 Science & Technology
+  - 📜 History
+  - 🌍 Geography
+  - ⚽ Sports
+  - 🎬 Entertainment
+  - 📖 Literature
+  - 📰 Current Affairs
 
 - 🎲 Game Mechanics
-  - Progressive difficulty
-  - 15 questions per game
-  - Prize money increases with each correct answer
-  - Instant feedback on answers
-  - Detailed results page
+  - 📈 Progressive difficulty
+  - 🔢 15 questions per game
+  - 💰 Prize money increases with each correct answer
+  - ✅ Instant feedback on answers
+  - 📊 Detailed results page
+  - 🕒 Real-time date and time display
+  - 🎯 Topic specification for focused questions
 
 - 🎨 Modern UI/UX
-  - Responsive design
-  - Smooth animations
-  - Topic-specific icons
-  - Visual feedback for answers
+  - 📱 Responsive design
+  - ✨ Smooth animations
+  - 🔍 Topic-specific icons
+  - 💫 Visual feedback for answers
+  - 🎯 Dynamic topic input interface
+  - 🎨 Clean and intuitive layout
 
-## Technology Stack
+## 🛠️ Technology Stack
 
-- **Backend**: Node.js + Express.js
-- **Frontend**: EJS + Custom CSS
-- **AI**: Google's Gemini AI API
-- **Database**: In-memory session storage
+- **🖥️ Backend**: Node.js + Express.js
+- **🎨 Frontend**: EJS + Custom CSS
+- **🤖 AI**: Google's Gemini AI API
+- **💾 Database**: In-memory session storage
 
-## Code Structure
+## 📁 Code Structure
 
 ```
 KBC/
@@ -60,9 +54,9 @@ KBC/
 └── README.md             # Documentation
 ```
 
-### Key Components
+### 🔧 Key Components
 
-1. **Question Generation (`app.js`)**
+1. **🤖 Question Generation (`app.js`)**
 ```javascript
 async function generateMcq(topic, questionNumber) {
     const model = genAI.getGenerativeModel({ model: "gemini-pro" });
@@ -72,7 +66,7 @@ async function generateMcq(topic, questionNumber) {
 }
 ```
 
-2. **Answer Validation (`app.js`)**
+2. **✅ Answer Validation (`app.js`)**
 ```javascript
 app.post('/check-answer', async (req, res) => {
     // Validates user answers
@@ -81,7 +75,7 @@ app.post('/check-answer', async (req, res) => {
 });
 ```
 
-3. **Game State Management**
+3. **💾 Game State Management**
 ```javascript
 const gameStates = new Map();
 // Tracks:
@@ -89,70 +83,81 @@ const gameStates = new Map();
 // - Score
 // - Question history
 // - User answers
+// - Topic specification
 ```
 
-## Setup Instructions
+## 🚀 Setup Instructions
 
-1. **Clone the Repository**
+1. **📥 Clone the Repository**
 ```bash
 git clone https://github.com/Siddanagowda/KBC.git
 cd KBC
 ```
 
-2. **Install Dependencies**
+2. **📦 Install Dependencies**
 ```bash
+cd src
 npm install
 ```
 
-3. **Configure Environment**
+3. **⚙️ Configure Environment**
 Create a `.env` file:
 ```env
 GEMINI_API_KEY=your_api_key_here
 PORT=3000
 ```
 
-4. **Start the Server**
+4. **▶️ Start the Server**
 ```bash
 npm start
 ```
 
-5. **Access the Game**
-Open `http://localhost:3000` in your browser
+5. **🎮 Access the Game**
+- 🌐 Open `http://localhost:3000` in your browser
+- 🎯 Select a topic and specify your area of interest
+- 🎲 Start playing!
 
-## Game Flow
+## 🎮 Game Flow
 
-1. User selects a topic
-2. Server generates a question using Gemini AI
-3. User selects an answer
-4. Server validates and provides feedback
-5. Process repeats until:
-   - Wrong answer (game over)
-   - All 15 questions completed (winner!)
-6. Final results displayed
+1. 🎯 User selects a topic and specifies their area of interest
+2. 🤖 Server generates questions focused on the specified area using Gemini AI
+3. ✍️ User selects an answer
+4. ✅ Server validates and provides feedback
+5. 🔄 Process repeats until:
+   - ❌ Wrong answer (game over)
+   - 🏆 All 15 questions completed (winner!)
+6. 📊 Final results displayed
 
-## Prize Money Structure
+## 💰 Prize Money Structure
 
-- Question 1: ₹1,000
-- Question 5: ₹10,000
-- Question 10: ₹3,20,000
-- Question 15: ₹1 Crore
+- 🎯 Question 1: ₹1,000
+- 📈 Question 5: ₹10,000
+- 💫 Question 10: ₹3,20,000
+- 🏆 Question 15: ₹1 Crore
 
-## Contributing
+## 🌟 New Features
 
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a Pull Request
+- **🎯 Topic Specification**: Users can now specify their area of interest within each topic
+- **🕒 Real-time Clock**: Live date and time display during gameplay
+- **✨ Enhanced UI**: Improved interface with dynamic topic input
+- **🎯 Focused Questions**: AI generates questions specific to user's interest area
 
-## License
+## 🤝 Contributing
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+1. 🔀 Fork the repository
+2. 🌿 Create a feature branch
+3. 💻 Commit your changes
+4. 🚀 Push to the branch
+5. 📝 Create a Pull Request
 
-## Acknowledgments
+## 📄 License
 
-- Inspired by the TV show "Kaun Banega Crorepati"
-- Powered by Google's Gemini AI
-- Built with Node.js and Express.js
+This project is licensed under the MIT License - see the LICENSE file for details. ⚖️
+
+## 🙏 Acknowledgments
+
+- 📺 Inspired by the TV show "Kaun Banega Crorepati"
+- 🤖 Powered by Google's Gemini AI
+- 🛠️ Built with Node.js and Express.js
 
 ---
